@@ -256,9 +256,17 @@ function validate_program_inputs() {
   return "success";
 }
 
+function validate_chip_support() {
+  // Check if chip contains "C3" or "S3"
+  if (chip.includes('C3') || chip.includes('S3')){
+    alert("Unsupported Chip. Flashing may or may not work.")
+  };
+}
+
 programButton.onclick = async () => {
   const alertMsg = document.getElementById("alertmsg");
-  const err = validate_program_inputs();
+  const err = validate_program_inputs() 
+  validate_chip_support();
 
   if (err != "success") {
     alertMsg.innerHTML = "<strong>" + err + "</strong>";
